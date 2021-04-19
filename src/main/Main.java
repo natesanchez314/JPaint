@@ -19,7 +19,6 @@ public class Main {
         IGuiWindow guiWindow = new GuiWindow(paintCanvas);
         IUiModule uiModule = new Gui(guiWindow);
         ApplicationState appState = new ApplicationState(uiModule);
-        //final CommandHistory commandHistory = new CommandHistory();
         IJPaintController controller = new JPaintController(uiModule, appState);
         controller.setup();
 
