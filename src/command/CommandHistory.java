@@ -2,7 +2,7 @@ package command;
 
 import java.util.Stack;
 
-class CommandHistory {
+public final class CommandHistory {
 	private static final Stack<IUndoable> undoStack = new Stack<IUndoable>();
 	private static final Stack<IUndoable> redoStack = new Stack<IUndoable>();
 
