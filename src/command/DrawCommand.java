@@ -35,6 +35,6 @@ public class DrawCommand implements ICommand, IUndoable {
     g.setColor(Color.GREEN);
     int width = endPoint.getX() - startPoint.getX();
     int height = endPoint.getY() - startPoint.getY();
-    g.fillRect(endPoint.getX(), startPoint.getY(), width, height);
+    g.fillRect(startPoint.getX(), startPoint.getY(), width, height);
   }
 }
