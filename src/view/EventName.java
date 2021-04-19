@@ -31,18 +31,8 @@ public enum EventName {
 			return "CHOOSE MOUSE MODE";
 		}
 	},
-	UNDO {
-		@Override
-		public String toString() {
-			return "UNDO";
-		}
-	},
-	REDO {
-		@Override
-		public String toString() {
-			return "REDO";
-		}
-	},
+	UNDO,
+	REDO,
 	COPY,
 	PASTE,
 	DELETE,

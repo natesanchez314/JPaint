@@ -1,0 +1,40 @@
+package command;
+
+import controller.Point;
+
+import java.awt.*;
+
+public class DrawCommand implements ICommand, IUndoable {
+
+  private final Graphics2D g;
+  private final Point startPoint;
+  private final Point endPoint;
+
+  public DrawCommand(Graphics2D _g, Point _startPoint, Point _endPoint) {
+    g = _g;
+    startPoint = _startPoint;
+    endPoint = _endPoint;
+  }
+
+  @Override
+  public void run() {
+    drawRectangle(startPoint, endPoint);
+  }
+
+  @Override
+  public void redo() {
+    CommandHistory.redo();
+  }
+
+  @Override
+  public void undo() {
+    CommandHistory.undo();
+  }
+
+  private void drawRectangle(Point startPoint, Point endPoint) {
+    g.setColor(Color.GREEN);
+    int width = endPoint.getX() - startPoint.getX();
+    int height = endPoint.getY() - startPoint.getY();
+    g.fillRect(endPoint.getX(), startPoint.getY(), width, height);
+  }
+}
