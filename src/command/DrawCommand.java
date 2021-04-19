@@ -23,12 +23,15 @@ public class DrawCommand implements ICommand, IUndoable {
 
   @Override
   public void redo() {
-    CommandHistory.redo();
+    run();
   }
 
   @Override
   public void undo() {
-    CommandHistory.undo();
+    int width = endPoint.getX() - startPoint.getX();
+    int height = endPoint.getY() - startPoint.getY();
+    g.clearRect(startPoint.getX(), startPoint.getY(), width, height);
+    //CommandHistory.undo();
   }
 
   private void drawRectangle(Point startPoint, Point endPoint) {

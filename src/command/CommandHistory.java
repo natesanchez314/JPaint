@@ -9,6 +9,7 @@ public final class CommandHistory {
 	public static void add(IUndoable cmd) {
 		undoStack.push(cmd);
 		redoStack.clear();
+		printStacks();
 	}
 	
 	public static boolean undo() {
@@ -18,6 +19,8 @@ public final class CommandHistory {
 			redoStack.push(c);
 			c.undo();
 		}
+		printStacks();
+
 		return result;
 	}
 
@@ -28,6 +31,13 @@ public final class CommandHistory {
 			undoStack.push(c);
 			c.redo();
 		}
+		printStacks();
+
 		return result;
+	}
+
+	private static void printStacks() {
+		System.out.println("Undo Stack: " + undoStack);
+		System.out.println("Redo Stack: " + redoStack);
 	}
 }
