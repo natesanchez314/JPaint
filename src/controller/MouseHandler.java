@@ -1,7 +1,6 @@
 package controller;
 
-import command.CommandHistory;
-import command.DrawCommand;
+import command.CreateShapeCommand;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -26,18 +25,8 @@ public class MouseHandler extends MouseAdapter {
   public void mouseReleased(MouseEvent e) {
     endPoint = new Point((int) e.getPoint().getX(), (int) e.getPoint().getY());
     pressed = false;
-    DrawCommand drawCommand = new DrawCommand(g, startPoint, endPoint);
-    CommandHistory.add(drawCommand);
-    drawCommand.run();
-    //drawRectangle();
+    new CreateShapeCommand(g, startPoint, endPoint).run();
   }
-
-  /*private void drawRectangle() {
-    g.setColor(Color.GREEN);
-    int width = getEndPoint().getX() - getStartPoint().getX();
-    int height = getEndPoint().getY() - getStartPoint().getY();
-    g.fillRect(getStartPoint().getX(), getStartPoint().getY(), width, height);
-  }*/
 
   public Point getStartPoint() { return startPoint; }
 
