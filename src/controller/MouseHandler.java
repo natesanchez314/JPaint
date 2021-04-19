@@ -24,6 +24,7 @@ public class MouseHandler extends MouseAdapter {
     endPoint = new Point((int) e.getPoint().getX(), (int) e.getPoint().getY());
     pressed = false;
     drawRectangle();
+
   }
 
   private void drawRectangle() {
