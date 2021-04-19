@@ -1,4 +1,4 @@
-package main;
+package controller;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -10,7 +10,7 @@ public class MouseHandler extends MouseAdapter {
   private Point startPoint, endPoint;
   private Boolean pressed;
 
-  MouseHandler(Graphics2D _g) {
+  public MouseHandler(Graphics2D _g) {
     g = _g;
     pressed = false;
   }

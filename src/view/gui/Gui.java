@@ -22,17 +22,17 @@ public class Gui implements IUiModule {
 		button.addActionListener((ActionEvent) -> callback.run());
 	}
 
-    @Override
-    public <T> T getDialogResponse(IDialogChoice dialogSettings) {
-        Object selectedValue = JOptionPane.showInputDialog(null,
-                dialogSettings.getDialogText(),
-                dialogSettings.getDialogTitle(),
-                JOptionPane.PLAIN_MESSAGE,
-                null,
-                dialogSettings.getDialogOptions(),
-                dialogSettings.getCurrentSelection());
-        return selectedValue == null
-                ? (T)dialogSettings.getCurrentSelection()
-                : (T)selectedValue;
-    }
+  @Override
+  public <T> T getDialogResponse(IDialogChoice dialogSettings) {
+      Object selectedValue = JOptionPane.showInputDialog(null,
+              dialogSettings.getDialogText(),
+              dialogSettings.getDialogTitle(),
+              JOptionPane.PLAIN_MESSAGE,
+              null,
+              dialogSettings.getDialogOptions(),
+              dialogSettings.getCurrentSelection());
+      return selectedValue == null
+              ? (T)dialogSettings.getCurrentSelection()
+              : (T)selectedValue;
+  }
 }
