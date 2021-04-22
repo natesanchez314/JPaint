@@ -1,6 +1,5 @@
 package main;
 
-import command.CommandHistory;
 import controller.IJPaintController;
 import controller.JPaintController;
 import controller.MouseHandler;
