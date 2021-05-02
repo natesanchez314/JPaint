@@ -29,9 +29,42 @@ public class Rectangle implements IShape {
 
   @Override
   public void draw() {
-    g.setColor(primaryColor);
     int width = endPoint.getX() - startPoint.getX();
     int height = endPoint.getY() - startPoint.getY();
-    g.fillRect(startPoint.getX(), startPoint.getY(), width, height);
+    g.setColor(primaryColor);
+    if (shapeShadingType == ShapeShadingType.FILLED_IN) {
+      g.fillRect(startPoint.getX(), startPoint.getY(), width, height);
+    } else if (shapeShadingType == ShapeShadingType.OUTLINE) {
+      if (width < 0) {
+        g.setColor(primaryColor);
+        if (height < 0) g.drawRect(endPoint.getX(), endPoint.getY(), -width, -height);
+        else g.drawRect(endPoint.getX(), startPoint.getY(), -width, height);
+      } else {
+        if (height < 0) g.drawRect(startPoint.getX(), endPoint.getY(), width, -height);
+        else g.drawRect(startPoint.getX(), startPoint.getY(), width, height);
+      }
+    } else {
+      if (width < 0) {
+        if (height < 0) {
+          g.fillRect(endPoint.getX(), endPoint.getY(), -width, -height);
+          g.setColor(secondaryColor);
+          g.drawRect(endPoint.getX(), endPoint.getY(), -width, -height);
+        } else {
+          g.fillRect(endPoint.getX(), startPoint.getY(), -width, height);
+          g.setColor(secondaryColor);
+          g.drawRect(endPoint.getX(), startPoint.getY(), -width, height);
+        }
+      } else {
+        if (height < 0) {
+          g.fillRect(startPoint.getX(), endPoint.getY(), width, -height);
+          g.setColor(secondaryColor);
+          g.drawRect(startPoint.getX(), endPoint.getY(), width, -height);
+        } else {
+          g.fillRect(startPoint.getX(), startPoint.getY(), width, height);
+          g.setColor(secondaryColor);
+          g.drawRect(startPoint.getX(), startPoint.getY(), width, height);
+        }
+      }
+    }
   }
 }
