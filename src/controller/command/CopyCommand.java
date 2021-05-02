@@ -1,6 +1,6 @@
-package command;
+package controller.command;
 
-public class RemoveShapeCommand implements ICommand, IUndoable {
+public class CopyCommand implements ICommand, IUndoable {
 
   @Override
   public void run() {

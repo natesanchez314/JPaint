@@ -1,4 +1,4 @@
-package command;
+package controller.command;
 
 public interface IUndoable {
     void redo();

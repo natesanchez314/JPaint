@@ -1,8 +1,7 @@
-package command;
+package controller.command;
 
 import controller.Point;
 import model.shape.IShape;
-import model.shape.Rectangle;
 
 import java.awt.*;
 
@@ -11,9 +10,9 @@ public class CreateShapeCommand implements ICommand, IUndoable {
   private final Graphics2D g;
   private final IShape shape;
 
-  public CreateShapeCommand(IShape _shape, Graphics2D g, Point startPoint, Point endPoint) {
+  public CreateShapeCommand(IShape _shape, Graphics2D _g, Point startPoint, Point endPoint) {
     shape = _shape;
-    this.g = g;
+    g = _g;
   }
 
   @Override
