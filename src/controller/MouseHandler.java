@@ -41,7 +41,7 @@ public class MouseHandler extends MouseAdapter {
     } else if (applicationState.getActiveMouseMode() == MouseMode.SELECT) {
       new SelectCommand(startPoint, endPoint).run();
     } else {
-      new MoveCommand(startPoint, endPoint).run();
+      new MoveCommand(g, startPoint, endPoint).run();
     }
   }
 }
