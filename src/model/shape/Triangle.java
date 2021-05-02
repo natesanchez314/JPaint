@@ -5,7 +5,7 @@ import model.ShapeShadingType;
 
 import java.awt.*;
 
-public class Rectangle implements IShape {
+public class Triangle implements IShape {
 
   private final Point startPoint, endPoint;
   private final Graphics2D g;
@@ -13,12 +13,12 @@ public class Rectangle implements IShape {
   private final Color secondaryColor;
   private final ShapeShadingType shapeShadingType;
 
-  public Rectangle(Graphics2D _g,
-                   Point _startPoint,
-                   Point _endPoint,
-                   Color _primaryColor,
-                   Color _secondaryColor,
-                   ShapeShadingType _shapeShadingType) {
+  public Triangle(Graphics2D _g,
+                  Point _startPoint,
+                  Point _endPoint,
+                  Color _primaryColor,
+                  Color _secondaryColor,
+                  ShapeShadingType _shapeShadingType) {
     g = _g;
     startPoint = _startPoint;
     endPoint = _endPoint;
@@ -29,9 +29,10 @@ public class Rectangle implements IShape {
 
   @Override
   public void draw() {
-    g.setColor(primaryColor);
     int width = endPoint.getX() - startPoint.getX();
-    int height = endPoint.getY() - startPoint.getY();
-    g.fillRect(startPoint.getX(), startPoint.getY(), width, height);
+    int[] xPoints = {startPoint.getX(), startPoint.getX() + width / 2, endPoint.getX()};
+    int[] yPoints = {startPoint.getY(), endPoint.getY(), startPoint.getY() };
+    g.setColor(primaryColor);
+    g.fillPolygon(xPoints, yPoints, 3);
   }
 }

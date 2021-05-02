@@ -11,8 +11,8 @@ public class CreateShapeCommand implements ICommand, IUndoable {
   private final Graphics2D g;
   private final IShape shape;
 
-  public CreateShapeCommand(Graphics2D g, Point startPoint, Point endPoint) {
-    shape = new Rectangle(startPoint, endPoint, g);
+  public CreateShapeCommand(IShape _shape, Graphics2D g, Point startPoint, Point endPoint) {
+    shape = _shape;
     this.g = g;
   }
 
