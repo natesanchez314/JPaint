@@ -1,6 +1,9 @@
 package controller;
 
 import command.CreateShapeCommand;
+import model.persistence.ApplicationState;
+import model.shape.IShape;
+import model.shape.ShapeFactory;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -9,28 +12,27 @@ import java.awt.event.MouseEvent;
 public class MouseHandler extends MouseAdapter {
 
   private Graphics2D g;
-  private Point startPoint, endPoint;
-  private Boolean pressed;
+  private Point startPoint;
+  private final ApplicationState applicationState;
 
-  public MouseHandler(Graphics2D _g) {
+  public MouseHandler(Graphics2D _g, ApplicationState _applicationState) {
     g = _g;
-    pressed = false;
+    applicationState = _applicationState;
   }
 
   public void mousePressed(MouseEvent e) {
     startPoint = new Point((int) e.getPoint().getX(), (int) e.getPoint().getY());
-    pressed = true;
   }
 
   public void mouseReleased(MouseEvent e) {
-    endPoint = new Point((int) e.getPoint().getX(), (int) e.getPoint().getY());
-    pressed = false;
-    new CreateShapeCommand(g, startPoint, endPoint).run();
+    Point endPoint = new Point((int) e.getPoint().getX(), (int) e.getPoint().getY());
+    IShape shape;
+    switch (applicationState.getActiveShapeType()) {
+      case ELLIPSE -> shape = ShapeFactory.getEllipse(g, applicationState, startPoint, endPoint);
+      case TRIANGLE -> shape = ShapeFactory.getTriangle(g, applicationState, startPoint, endPoint);
+      case RECTANGLE -> shape = ShapeFactory.getRectangle(g, applicationState, startPoint, endPoint);
+      default -> throw new IllegalStateException("Unexpected value: " + applicationState.getActiveShapeType());
+    }
+    new CreateShapeCommand(shape, g, startPoint, endPoint).run();
   }
-
-  public Point getStartPoint() { return startPoint; }
-
-  public Point getEndPoint() { return endPoint; }
-
-  public Boolean isPressed() { return pressed; }
 }

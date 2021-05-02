@@ -21,7 +21,7 @@ public class Main {
         IJPaintController controller = new JPaintController(uiModule, appState);
         controller.setup();
 
-        MouseHandler mh = new MouseHandler(paintCanvas.getGraphics2D());
+        MouseHandler mh = new MouseHandler(paintCanvas.getGraphics2D(), appState);
         paintCanvas.addMouseListener(mh);
     }
 }
