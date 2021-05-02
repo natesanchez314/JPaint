@@ -1,10 +1,9 @@
 package controller;
 
-import command.RedoCommand;
-import command.UndoCommand;
+import controller.command.RedoCommand;
+import controller.command.UndoCommand;
 import model.interfaces.IApplicationState;
 import view.EventName;
-import view.interfaces.IEventCallback;
 import view.interfaces.IUiModule;
 
 public class JPaintController implements IJPaintController {

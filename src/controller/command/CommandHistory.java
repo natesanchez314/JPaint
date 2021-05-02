@@ -1,15 +1,14 @@
-package command;
+package controller.command;
 
 import model.shape.IShape;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
 public final class CommandHistory {
 	private static final Stack<IUndoable> undoStack = new Stack<IUndoable>();
 	private static final Stack<IUndoable> redoStack = new Stack<IUndoable>();
 	private static final Stack<IShape> shapeList = new Stack<IShape>();
+	private static final Stack<IShape> selectedShapes = new Stack<>();
 
 	public static void add(IUndoable cmd) {
 		undoStack.push(cmd);
@@ -19,6 +18,11 @@ public final class CommandHistory {
 	public static void addShape(IShape shape) {
 		shapeList.add(shape);
 	}
+
+	public static void selectShape(IShape shape) { selectedShapes.push(shape);
+	System.out.println(selectedShapes);}
+
+	public static void clearSelectedShapes() { selectedShapes.clear(); }
 	
 	public static boolean undo() {
 		boolean result = !undoStack.empty();

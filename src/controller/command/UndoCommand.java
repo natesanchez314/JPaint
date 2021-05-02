@@ -1,4 +1,4 @@
-package command;
+package controller.command;
 
 public class UndoCommand implements ICommand{
     @Override
