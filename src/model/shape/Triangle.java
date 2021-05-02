@@ -33,6 +33,14 @@ public class Triangle implements IShape {
     int[] xPoints = {startPoint.getX(), startPoint.getX() + width / 2, endPoint.getX()};
     int[] yPoints = {startPoint.getY(), endPoint.getY(), startPoint.getY() };
     g.setColor(primaryColor);
-    g.fillPolygon(xPoints, yPoints, 3);
+    if (shapeShadingType == ShapeShadingType.FILLED_IN) {
+      g.fillPolygon(xPoints, yPoints, 3);
+    } else if (shapeShadingType == ShapeShadingType.OUTLINE) {
+      g.drawPolygon(xPoints, yPoints, 3);
+    } else {
+      g.fillPolygon(xPoints, yPoints, 3);
+      g.setColor(secondaryColor);
+      g.drawPolygon(xPoints, yPoints, 3);
+    }
   }
 }

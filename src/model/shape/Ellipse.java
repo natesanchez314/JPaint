@@ -29,20 +29,58 @@ public class Ellipse implements IShape {
 
   @Override
   public void draw() {
-    g.setColor(primaryColor);
     int width = endPoint.getX() - startPoint.getX();
     int height = endPoint.getY() - startPoint.getY();
-    if (width < 0) {
-      if (height < 0) {
-        g.fillOval(endPoint.getX(), endPoint.getY(), -width, -height);
+    g.setColor(primaryColor);
+    if (shapeShadingType == ShapeShadingType.FILLED_IN) {
+      if (width < 0) {
+        if (height < 0) {
+          g.fillOval(endPoint.getX(), endPoint.getY(), -width, -height);
+        } else {
+          g.fillOval(endPoint.getX(), startPoint.getY(), -width, height);
+        }
       } else {
-        g.fillOval(endPoint.getX(), startPoint.getY(), -width, height);
+        if (height < 0) {
+          g.fillOval(startPoint.getX(), endPoint.getY(), width, -height);
+        } else {
+          g.fillOval(startPoint.getX(), startPoint.getY(), width, height);
+        }
+      }
+    } else if (shapeShadingType == ShapeShadingType.OUTLINE) {
+      if (width < 0) {
+        if (height < 0) {
+          g.drawOval(endPoint.getX(), endPoint.getY(), -width, -height);
+        } else {
+          g.drawOval(endPoint.getX(), startPoint.getY(), -width, height);
+        }
+      } else {
+        if (height < 0) {
+          g.drawOval(startPoint.getX(), endPoint.getY(), width, -height);
+        } else {
+          g.drawOval(startPoint.getX(), startPoint.getY(), width, height);
+        }
       }
     } else {
-      if (height < 0) {
-        g.fillOval(startPoint.getX(), endPoint.getY(), width, -height);
+      if (width < 0) {
+        if (height < 0) {
+          g.fillOval(endPoint.getX(), endPoint.getY(), -width, -height);
+          g.setColor(secondaryColor);
+          g.drawOval(endPoint.getX(), endPoint.getY(), -width, -height);
+        } else {
+          g.fillOval(endPoint.getX(), startPoint.getY(), -width, height);
+          g.setColor(secondaryColor);
+          g.drawOval(endPoint.getX(), startPoint.getY(), -width, height);
+        }
       } else {
-        g.fillOval(startPoint.getX(), startPoint.getY(), width, height);
+        if (height < 0) {
+          g.fillOval(startPoint.getX(), endPoint.getY(), width, -height);
+          g.setColor(secondaryColor);
+          g.drawOval(startPoint.getX(), endPoint.getY(), width, -height);
+        } else {
+          g.fillOval(startPoint.getX(), startPoint.getY(), width, height);
+          g.setColor(secondaryColor);
+          g.drawOval(startPoint.getX(), startPoint.getY(), width, height);
+        }
       }
     }
   }
