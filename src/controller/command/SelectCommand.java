@@ -4,7 +4,7 @@ import controller.Point;
 import controller.shape.IShape;
 import controller.shape.SelectionRectangle;
 
-public class SelectCommand implements ICommand, IUndoable {
+public class SelectCommand implements ICommand {
 
   private final IShape selectionRectangle;
 
@@ -15,23 +15,12 @@ public class SelectCommand implements ICommand, IUndoable {
   @Override
   public void run() {
     select();
-    CommandHistory.add(this);
-  }
-
-  @Override
-  public void redo() {
-    select();
-  }
-
-  @Override
-  public void undo() {
-    CommandHistory.clearSelectedShapes();
   }
 
   private void select() {
-    CommandHistory.clearSelectedShapes();
+    SelectedShapes.deselectShapes();
     for (IShape shape : CommandHistory.getShapeList()) {
-      if (shape.intersects(selectionRectangle) || selectionRectangle.intersects(shape)) CommandHistory.selectShape(shape);
+      if (shape.intersects(selectionRectangle) || selectionRectangle.intersects(shape)) SelectedShapes.selectShape(shape);
     }
   }
 }
