@@ -1,10 +1,11 @@
 package controller.command;
 
 import model.shape.IShape;
+import model.shape.IShapeObserver;
 
 import java.util.Stack;
 
-public final class CommandHistory {
+public final class CommandHistory implements IShapeSubject {
 	private static final Stack<IUndoable> undoStack = new Stack<IUndoable>();
 	private static final Stack<IUndoable> redoStack = new Stack<IUndoable>();
 	private static final Stack<IShape> shapeList = new Stack<IShape>();
@@ -28,7 +29,7 @@ public final class CommandHistory {
 		boolean result = !undoStack.empty();
 		if (result) {
 			IUndoable c = undoStack.pop();
-			shapeList.pop();
+			//shapeList.pop();
 			redoStack.push(c);
 			c.undo();
 		}
@@ -52,5 +53,21 @@ public final class CommandHistory {
 
 	public static Stack<IShape> getShapeList() {
 		return shapeList;
+	}
+
+	public static Stack<IShape> getSelectedShapes() { return selectedShapes; }
+
+	@Override
+	public void registerObserver(IShapeObserver observer) {
+
+	}
+
+	@Override
+	public void deregisterOberver(IShapeObserver observer) {
+
+	}
+
+	private void notifyObservers() {
+		//for (IShapeSubject)
 	}
 }
