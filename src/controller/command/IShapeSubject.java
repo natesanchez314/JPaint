@@ -1,6 +1,6 @@
 package controller.command;
 
-import model.shape.IShapeObserver;
+import controller.shape.IShapeObserver;
 
 public interface IShapeSubject {
   void registerObserver(IShapeObserver observer);

@@ -1,12 +1,10 @@
 package controller;
 
-import controller.command.CreateShapeCommand;
-import controller.command.MoveCommand;
-import controller.command.SelectCommand;
-import model.MouseMode;
+import controller.MouseState.DrawState;
+import controller.MouseState.IState;
+import controller.MouseState.MoveState;
+import controller.MouseState.SelectState;
 import model.persistence.ApplicationState;
-import model.shape.IShape;
-import model.shape.ShapeFactory;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -17,10 +15,26 @@ public class MouseHandler extends MouseAdapter {
   private Graphics2D g;
   private Point startPoint;
   private final ApplicationState applicationState;
+  private IState mouseHandlerState;
+  private final IState DrawState;
+  private final IState SelectState;
+  private final IState MoveState;
 
   public MouseHandler(Graphics2D _g, ApplicationState _applicationState) {
     g = _g;
     applicationState = _applicationState;
+    DrawState = new DrawState(applicationState);
+    SelectState = new SelectState();
+    MoveState = new MoveState();
+    updateState();
+  }
+
+  public void updateState() {
+    switch (applicationState.getActiveMouseMode()) {
+      case DRAW -> mouseHandlerState = DrawState;
+      case SELECT -> mouseHandlerState = SelectState;
+      case MOVE -> mouseHandlerState = MoveState;
+    }
   }
 
   public void mousePressed(MouseEvent e) {
@@ -28,6 +42,11 @@ public class MouseHandler extends MouseAdapter {
   }
 
   public void mouseReleased(MouseEvent e) {
+    Point endPoint = new Point((int) e.getPoint().getX(), (int) e.getPoint().getY());
+    mouseHandlerState.makeCommand(g, startPoint, endPoint);
+  }
+
+  /*public void mouseReleased(MouseEvent e) {
     Point endPoint = new Point((int) e.getPoint().getX(), (int) e.getPoint().getY());
     IShape shape;
     if (applicationState.getActiveMouseMode() == MouseMode.DRAW) {
@@ -43,5 +62,5 @@ public class MouseHandler extends MouseAdapter {
     } else {
       new MoveCommand(g, startPoint, endPoint).run();
     }
-  }
+  }*/
 }

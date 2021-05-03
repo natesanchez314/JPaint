@@ -1,24 +1,24 @@
-package model.shape;
+package controller.shape;
 
 import controller.Point;
 import model.ShapeShadingType;
 
 import java.awt.*;
 
-public class Ellipse implements IShape {
+public class Rectangle implements IShape {
 
-  private final Point startPoint, endPoint;
+  private Point startPoint, endPoint;
   private final Graphics2D g;
   private final Color primaryColor;
   private final Color secondaryColor;
   private final ShapeShadingType shapeShadingType;
 
-  public Ellipse(Graphics2D _g,
-                 Point _startPoint,
-                 Point _endPoint,
-                 Color _primaryColor,
-                 Color _secondaryColor,
-                 ShapeShadingType _shapeShadingType) {
+  public Rectangle(Graphics2D _g,
+                   Point _startPoint,
+                   Point _endPoint,
+                   Color _primaryColor,
+                   Color _secondaryColor,
+                   ShapeShadingType _shapeShadingType) {
     g = _g;
     startPoint = _startPoint;
     endPoint = _endPoint;
@@ -33,53 +33,36 @@ public class Ellipse implements IShape {
     int height = endPoint.getY() - startPoint.getY();
     g.setColor(primaryColor);
     if (shapeShadingType == ShapeShadingType.FILLED_IN) {
-      if (width < 0) {
-        if (height < 0) {
-          g.fillOval(endPoint.getX(), endPoint.getY(), -width, -height);
-        } else {
-          g.fillOval(endPoint.getX(), startPoint.getY(), -width, height);
-        }
-      } else {
-        if (height < 0) {
-          g.fillOval(startPoint.getX(), endPoint.getY(), width, -height);
-        } else {
-          g.fillOval(startPoint.getX(), startPoint.getY(), width, height);
-        }
-      }
+      g.fillRect(startPoint.getX(), startPoint.getY(), width, height);
     } else if (shapeShadingType == ShapeShadingType.OUTLINE) {
       if (width < 0) {
-        if (height < 0) {
-          g.drawOval(endPoint.getX(), endPoint.getY(), -width, -height);
-        } else {
-          g.drawOval(endPoint.getX(), startPoint.getY(), -width, height);
-        }
+        g.setColor(primaryColor);
+        if (height < 0) g.drawRect(endPoint.getX(), endPoint.getY(), -width, -height);
+        else g.drawRect(endPoint.getX(), startPoint.getY(), -width, height);
       } else {
-        if (height < 0) {
-          g.drawOval(startPoint.getX(), endPoint.getY(), width, -height);
-        } else {
-          g.drawOval(startPoint.getX(), startPoint.getY(), width, height);
-        }
+        if (height < 0) g.drawRect(startPoint.getX(), endPoint.getY(), width, -height);
+        else g.drawRect(startPoint.getX(), startPoint.getY(), width, height);
       }
     } else {
       if (width < 0) {
         if (height < 0) {
-          g.fillOval(endPoint.getX(), endPoint.getY(), -width, -height);
+          g.fillRect(endPoint.getX(), endPoint.getY(), -width, -height);
           g.setColor(secondaryColor);
-          g.drawOval(endPoint.getX(), endPoint.getY(), -width, -height);
+          g.drawRect(endPoint.getX(), endPoint.getY(), -width, -height);
         } else {
-          g.fillOval(endPoint.getX(), startPoint.getY(), -width, height);
+          g.fillRect(endPoint.getX(), startPoint.getY(), -width, height);
           g.setColor(secondaryColor);
-          g.drawOval(endPoint.getX(), startPoint.getY(), -width, height);
+          g.drawRect(endPoint.getX(), startPoint.getY(), -width, height);
         }
       } else {
         if (height < 0) {
-          g.fillOval(startPoint.getX(), endPoint.getY(), width, -height);
+          g.fillRect(startPoint.getX(), endPoint.getY(), width, -height);
           g.setColor(secondaryColor);
-          g.drawOval(startPoint.getX(), endPoint.getY(), width, -height);
+          g.drawRect(startPoint.getX(), endPoint.getY(), width, -height);
         } else {
-          g.fillOval(startPoint.getX(), startPoint.getY(), width, height);
+          g.fillRect(startPoint.getX(), startPoint.getY(), width, height);
           g.setColor(secondaryColor);
-          g.drawOval(startPoint.getX(), startPoint.getY(), width, height);
+          g.drawRect(startPoint.getX(), startPoint.getY(), width, height);
         }
       }
     }
