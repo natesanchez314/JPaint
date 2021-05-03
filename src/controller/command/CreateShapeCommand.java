@@ -1,7 +1,7 @@
 package controller.command;
 
 import controller.Point;
-import model.shape.IShape;
+import controller.shape.IShape;
 
 import java.awt.*;
 

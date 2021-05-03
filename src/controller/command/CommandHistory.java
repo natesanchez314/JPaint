@@ -1,7 +1,7 @@
 package controller.command;
 
-import model.shape.IShape;
-import model.shape.IShapeObserver;
+import controller.shape.IShape;
+import controller.shape.IShapeObserver;
 
 import java.util.Stack;
 

@@ -1,8 +1,8 @@
 package controller.command;
 
 import controller.Point;
-import model.shape.IShape;
-import model.shape.SelectionRectangle;
+import controller.shape.IShape;
+import controller.shape.SelectionRectangle;
 
 public class SelectCommand implements ICommand, IUndoable {
 
@@ -25,6 +25,7 @@ public class SelectCommand implements ICommand, IUndoable {
 
   @Override
   public void undo() {
+    CommandHistory.clearSelectedShapes();
   }
 
   private void select() {

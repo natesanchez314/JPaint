@@ -1,4 +1,4 @@
-package model.shape;
+package controller.shape;
 
 public interface IShapeObserver {
   void update();
