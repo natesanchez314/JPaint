@@ -14,7 +14,6 @@ public class SelectCommand implements ICommand, IUndoable {
 
   @Override
   public void run() {
-    CommandHistory.clearSelectedShapes();
     select();
     CommandHistory.add(this);
   }
@@ -29,6 +28,7 @@ public class SelectCommand implements ICommand, IUndoable {
   }
 
   private void select() {
+    CommandHistory.clearSelectedShapes();
     for (IShape shape : CommandHistory.getShapeList()) {
       if (shape.intersects(selectionRectangle) || selectionRectangle.intersects(shape)) CommandHistory.selectShape(shape);
     }
