@@ -2,11 +2,15 @@ package controller.shape;
 
 import controller.Point;
 
+import java.awt.*;
+
 public class SelectionRectangle implements IShape {
 
   private final Point startPoint, endPoint;
+  private final Graphics2D g;
 
-  public SelectionRectangle(Point _startPoint, Point _endPoint) {
+  public SelectionRectangle(Graphics2D _g, Point _startPoint, Point _endPoint) {
+    g = _g;
     startPoint = _startPoint;
     endPoint = _endPoint;
   }
@@ -45,5 +49,10 @@ public class SelectionRectangle implements IShape {
   @Override
   public Point getEndPoint() {
     return endPoint;
+  }
+
+  @Override
+  public Graphics2D getGraphics() {
+    return g;
   }
 }

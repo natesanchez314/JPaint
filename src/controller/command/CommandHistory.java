@@ -2,6 +2,7 @@ package controller.command;
 
 import controller.shape.IShape;
 
+import java.awt.*;
 import java.util.Stack;
 
 public final class CommandHistory {
@@ -17,6 +18,8 @@ public final class CommandHistory {
 	public static void addShape(IShape shape) {
 		shapeList.add(shape);
 	}
+
+	public static void removeShape(IShape shape) { shapeList.remove(shape); }
 	
 	public static boolean undo() {
 		boolean result = !undoStack.empty();
