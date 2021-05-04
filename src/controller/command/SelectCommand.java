@@ -4,12 +4,14 @@ import controller.Point;
 import controller.shape.IShape;
 import controller.shape.SelectionRectangle;
 
+import java.awt.*;
+
 public class SelectCommand implements ICommand {
 
   private final IShape selectionRectangle;
 
-  public SelectCommand(Point startPoint, Point endPoint) {
-    selectionRectangle = new SelectionRectangle(startPoint, endPoint);
+  public SelectCommand(Graphics2D g, Point startPoint, Point endPoint) {
+    selectionRectangle = new SelectionRectangle(g, startPoint, endPoint);
   }
 
   @Override

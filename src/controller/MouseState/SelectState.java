@@ -8,6 +8,6 @@ public class SelectState implements IState {
 
   @Override
   public void makeCommand(Graphics2D g, controller.Point startPoint, controller.Point endPoint) {
-    new SelectCommand(startPoint, endPoint).run();
+    new SelectCommand(g, startPoint, endPoint).run();
   }
 }

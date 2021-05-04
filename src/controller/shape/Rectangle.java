@@ -7,7 +7,8 @@ import java.awt.*;
 
 public class Rectangle implements IShape {
 
-  private Point startPoint, endPoint;
+  private final Point startPoint;
+  private final Point endPoint;
   private final Graphics2D g;
   private final Color primaryColor;
   private final Color secondaryColor;
@@ -104,5 +105,10 @@ public class Rectangle implements IShape {
   @Override
   public Point getEndPoint() {
     return endPoint;
+  }
+
+  @Override
+  public Graphics2D getGraphics() {
+    return g;
   }
 }

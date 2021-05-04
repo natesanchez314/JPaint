@@ -1,7 +1,6 @@
 package controller;
 
-import controller.command.RedoCommand;
-import controller.command.UndoCommand;
+import controller.command.*;
 import model.interfaces.IApplicationState;
 import view.EventName;
 import view.interfaces.IUiModule;
@@ -33,5 +32,8 @@ public class JPaintController implements IJPaintController {
         });
         uiModule.addEvent(EventName.UNDO, () -> { new UndoCommand().run(); });
         uiModule.addEvent(EventName.REDO, () -> { new RedoCommand().run(); });
+        uiModule.addEvent(EventName.DELETE, () -> { new DeleteCommand().run(); });
+        uiModule.addEvent(EventName.COPY, () -> { new CopyCommand().run(); });
+        uiModule.addEvent(EventName.PASTE, () -> { new PasteCommand().run(); });
     }
 }

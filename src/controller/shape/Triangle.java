@@ -81,4 +81,9 @@ public class Triangle implements IShape {
   public Point getEndPoint() {
     return endPoint;
   }
+
+  @Override
+  public Graphics2D getGraphics() {
+    return g;
+  }
 }

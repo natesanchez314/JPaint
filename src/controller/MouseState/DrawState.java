@@ -26,6 +26,6 @@ public class DrawState implements IState{
       case RECTANGLE -> shape = ShapeFactory.getRectangle(g, appState, startPoint, endPoint);
       default -> throw new IllegalStateException("Unexpected value: " + appState.getActiveShapeType());
     }
-    new CreateShapeCommand(shape, g, startPoint, endPoint).run();
+    new CreateShapeCommand(shape, g).run();
   }
 }

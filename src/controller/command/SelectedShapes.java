@@ -2,9 +2,12 @@ package controller.command;
 
 import controller.shape.IShape;
 
+import java.awt.*;
 import java.util.Stack;
 
 public class SelectedShapes {
+
+  private Graphics2D g;
 
   private SelectedShapes() {}
 
