@@ -55,4 +55,9 @@ public class SelectionRectangle implements IShape {
   public Graphics2D getGraphics() {
     return g;
   }
+
+  @Override
+  public IShape copy() {
+    return null;
+  }
 }

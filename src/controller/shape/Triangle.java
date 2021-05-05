@@ -86,4 +86,9 @@ public class Triangle implements IShape {
   public Graphics2D getGraphics() {
     return g;
   }
+
+  @Override
+  public IShape copy() {
+    return new Triangle(g, startPoint, endPoint, primaryColor, secondaryColor, shapeShadingType);
+  }
 }

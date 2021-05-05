@@ -17,7 +17,7 @@ public class MoveCommand implements ICommand, IUndoable{
     g = _g;
     xShift = endPoint.getX() - startPoint.getX();
     yShift = endPoint.getY() - startPoint.getY();
-    selectShapes = (Stack<IShape>)SelectedShapes.getSelectedShapes().clone();
+    selectShapes = (Stack<IShape>)CommandHistory.getSelectedShapes().clone();
   }
 
   @Override

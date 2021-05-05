@@ -127,4 +127,9 @@ public class Ellipse implements IShape {
   public Graphics2D getGraphics() {
     return g;
   }
+
+  @Override
+  public IShape copy() {
+    return new Ellipse(g, startPoint, endPoint, primaryColor, secondaryColor, shapeShadingType);
+  }
 }

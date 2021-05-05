@@ -111,4 +111,9 @@ public class Rectangle implements IShape {
   public Graphics2D getGraphics() {
     return g;
   }
+
+  @Override
+  public IShape copy() {
+    return new Rectangle(g, startPoint, endPoint, primaryColor, secondaryColor, shapeShadingType);
+  }
 }

@@ -16,13 +16,9 @@ public class SelectCommand implements ICommand {
 
   @Override
   public void run() {
-    select();
-  }
-
-  private void select() {
-    SelectedShapes.deselectShapes();
+    CommandHistory.deselectShapes();
     for (IShape shape : CommandHistory.getShapeList()) {
-      if (shape.intersects(selectionRectangle) || selectionRectangle.intersects(shape)) SelectedShapes.selectShape(shape);
+      if (shape.intersects(selectionRectangle) || selectionRectangle.intersects(shape)) CommandHistory.selectShape(shape);
     }
   }
 }
