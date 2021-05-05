@@ -25,4 +25,6 @@ public class Point {
   public void shiftX(int xOffset) { x += xOffset; }
 
   public void shiftY(int yOffset) { y += yOffset; }
+
+  public Point copy() { return new Point(x, y); }
 }

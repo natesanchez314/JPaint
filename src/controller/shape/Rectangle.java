@@ -114,6 +114,6 @@ public class Rectangle implements IShape {
 
   @Override
   public IShape copy() {
-    return new Rectangle(g, startPoint, endPoint, primaryColor, secondaryColor, shapeShadingType);
+    return new Rectangle(g, startPoint.copy(), endPoint.copy(), primaryColor, secondaryColor, shapeShadingType);
   }
 }

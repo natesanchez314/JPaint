@@ -54,4 +54,5 @@ public final class CommandHistory {
 
 	public static Stack<IShape> getClipBoard() { return clipBoard; }
 	public static void copyShape(IShape shape) { clipBoard.push(shape); }
+	public static void clearClipBoard() { clipBoard.clear(); }
 }

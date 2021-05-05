@@ -130,6 +130,6 @@ public class Ellipse implements IShape {
 
   @Override
   public IShape copy() {
-    return new Ellipse(g, startPoint, endPoint, primaryColor, secondaryColor, shapeShadingType);
+    return new Ellipse(g, startPoint.copy(), endPoint.copy(), primaryColor, secondaryColor, shapeShadingType);
   }
 }

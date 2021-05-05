@@ -89,6 +89,6 @@ public class Triangle implements IShape {
 
   @Override
   public IShape copy() {
-    return new Triangle(g, startPoint, endPoint, primaryColor, secondaryColor, shapeShadingType);
+    return new Triangle(g, startPoint.copy(), endPoint.copy(), primaryColor, secondaryColor, shapeShadingType);
   }
 }

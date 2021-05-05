@@ -7,11 +7,17 @@ import java.util.Stack;
 
 public class PasteCommand implements ICommand, IUndoable {
 
-  private Stack<IShape> pastedShapes = new Stack<>();
+  private final Stack<IShape> pastedShapes = new Stack<>();
 
   public PasteCommand() {
     for (IShape shape : CommandHistory.getClipBoard()) {
-      pastedShapes.push(shape.copy());
+      IShape newShape = shape.copy();
+      newShape.move(10, 10);
+      pastedShapes.push(newShape);
+    }
+    CommandHistory.clearClipBoard();
+    for (IShape shape : pastedShapes) {
+      CommandHistory.copyShape(shape);
     }
   }
 
@@ -19,7 +25,6 @@ public class PasteCommand implements ICommand, IUndoable {
   public void run() {
     if (!pastedShapes.isEmpty()) {
       for (IShape shape : pastedShapes) {
-        shape.move(10, 10);
         CommandHistory.addShape(shape);
       }
       Graphics2D g = pastedShapes.peek().getGraphics();
@@ -36,7 +41,6 @@ public class PasteCommand implements ICommand, IUndoable {
   public void redo() {
     if (!pastedShapes.isEmpty()) {
       for (IShape shape : pastedShapes) {
-        shape.move(10, 10);
         CommandHistory.addShape(shape);
       }
       Graphics2D g = pastedShapes.peek().getGraphics();
