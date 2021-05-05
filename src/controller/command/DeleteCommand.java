@@ -10,7 +10,7 @@ public class DeleteCommand implements ICommand, IUndoable {
   private final Stack<IShape> deletedShapes;
 
   public DeleteCommand() {
-    deletedShapes = (Stack<IShape>) SelectedShapes.getSelectedShapes().clone();
+    deletedShapes = (Stack<IShape>) CommandHistory.getSelectedShapes().clone();
   }
 
   @Override

@@ -1,19 +1,13 @@
 package controller.command;
 
-public class CopyCommand implements ICommand, IUndoable {
+import controller.shape.IShape;
+
+public class CopyCommand implements ICommand {
 
   @Override
   public void run() {
-
-  }
-
-  @Override
-  public void redo() {
-
-  }
-
-  @Override
-  public void undo() {
-
+    for (IShape shape : CommandHistory.getSelectedShapes()) {
+      CommandHistory.copyShape(shape);
+    }
   }
 }

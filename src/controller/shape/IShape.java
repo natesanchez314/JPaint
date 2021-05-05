@@ -12,4 +12,5 @@ public interface IShape {
   Point getStartPoint();
   Point getEndPoint();
   Graphics2D getGraphics();
+  IShape copy();
 }
