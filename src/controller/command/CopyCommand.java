@@ -1,14 +1,14 @@
 package controller.command;
 
-import controller.shape.IShape;
+import controller.shape.SelectedShapeOutline;
 
 public class CopyCommand implements ICommand {
 
   @Override
   public void run() {
     CommandHistory.clearClipBoard();
-    for (IShape shape : CommandHistory.getSelectedShapes()) {
-      CommandHistory.copyShape(shape);
+    for (SelectedShapeOutline shape : CommandHistory.getSelectedShapes()) {
+      CommandHistory.copyShape(shape.getShape());
     }
   }
 }

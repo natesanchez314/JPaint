@@ -27,12 +27,7 @@ public class PasteCommand implements ICommand, IUndoable {
       for (IShape shape : pastedShapes) {
         CommandHistory.addShape(shape);
       }
-      Graphics2D g = pastedShapes.peek().getGraphics();
-      g.setColor(Color.WHITE);
-      g.fillRect(0, 0, (int) g.getDeviceConfiguration().getBounds().getWidth(), (int) g.getDeviceConfiguration().getBounds().getHeight());
-      for (IShape drawnShape : CommandHistory.getShapeList()) {
-        drawnShape.draw();
-      }
+      CommandHistory.redrawAll();
     }
     CommandHistory.add(this);
   }
@@ -43,12 +38,7 @@ public class PasteCommand implements ICommand, IUndoable {
       for (IShape shape : pastedShapes) {
         CommandHistory.addShape(shape);
       }
-      Graphics2D g = pastedShapes.peek().getGraphics();
-      g.setColor(Color.WHITE);
-      g.fillRect(0, 0, (int) g.getDeviceConfiguration().getBounds().getWidth(), (int) g.getDeviceConfiguration().getBounds().getHeight());
-      for (IShape drawnShape : CommandHistory.getShapeList()) {
-        drawnShape.draw();
-      }
+      CommandHistory.redrawAll();
     }
   }
 
@@ -58,12 +48,7 @@ public class PasteCommand implements ICommand, IUndoable {
       for (IShape shape : pastedShapes) {
         CommandHistory.removeShape(shape);
       }
-      Graphics2D g = pastedShapes.peek().getGraphics();
-      g.setColor(Color.WHITE);
-      g.fillRect(0, 0, (int) g.getDeviceConfiguration().getBounds().getWidth(), (int) g.getDeviceConfiguration().getBounds().getHeight());
-      for (IShape drawnShape : CommandHistory.getShapeList()) {
-        drawnShape.draw();
-      }
+      CommandHistory.redrawAll();
     }
   }
 }
