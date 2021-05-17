@@ -33,24 +33,16 @@ public class MoveCommand implements ICommand, IUndoable{
 
   @Override
   public void undo() {
-    g.setColor(Color.WHITE);
-    g.fillRect(0, 0, (int) g.getDeviceConfiguration().getBounds().getWidth(), (int) g.getDeviceConfiguration().getBounds().getHeight());
     for (IShape shape : selectShapes) {
       shape.move(-xShift, -yShift);
     }
-    for (IShape shape : CommandHistory.getShapeList()) {
-      shape.draw();
-    }
+    CommandHistory.redrawAll();
   }
 
   private void move() {
-    g.setColor(Color.WHITE);
-    g.fillRect(0, 0, (int) g.getDeviceConfiguration().getBounds().getWidth(), (int) g.getDeviceConfiguration().getBounds().getHeight());
     for (IShape shape : selectShapes) {
       shape.move(xShift, yShift);
     }
-    for (IShape shape : CommandHistory.getShapeList()) {
-      shape.draw();
-    }
+    CommandHistory.redrawAll();
   }
 }
