@@ -3,6 +3,7 @@ package main;
 import controller.IJPaintController;
 import controller.JPaintController;
 import controller.MouseHandler;
+import controller.command.CommandHistory;
 import model.persistence.ApplicationState;
 import view.gui.Gui;
 import view.gui.GuiWindow;
@@ -22,7 +23,5 @@ public class Main {
         paintCanvas.addMouseListener(mh);
         IJPaintController controller = new JPaintController(uiModule, appState, mh);
         controller.setup();
-
-
     }
 }
