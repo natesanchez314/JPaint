@@ -39,7 +39,9 @@ public final class CommandHistory {
 	public static void addShape(IShape shape) {
 		shapeList.add(shape);
 	}
-	public static void removeShape(IShape shape) { shapeList.remove(shape); }
+	public static void removeShape(IShape shape) {
+		shapeList.remove(shape);
+	}
 
 	public static Stack<IShape> getShapeList() {
 		return shapeList;
@@ -66,9 +68,13 @@ public final class CommandHistory {
 			for (IShape shape : shapeList) {
 				shape.draw();
 			}
-			for (SelectedShapeOutline shape : selectedShapes) {
-				shape.draw();
+			g.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0));
+			if (!selectedShapes.isEmpty()) {
+				for (SelectedShapeOutline shape : selectedShapes) {
+					shape.draw();
+				}
 			}
+			g.setStroke(new BasicStroke());
 		}
 	}
 }
