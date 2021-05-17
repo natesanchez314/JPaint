@@ -34,7 +34,6 @@ public class SelectedShapeOutline implements IShape {
 
   @Override
   public void draw() {
-    System.out.println(shape.getClass());
     Graphics2D g = shape.getGraphics();
     if (shape instanceof controller.shape.Rectangle) {
       int width = endPoint.getX() - startPoint.getX();
