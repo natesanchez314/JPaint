@@ -77,4 +77,12 @@ public final class CommandHistory {
 			g.setStroke(new BasicStroke());
 		}
 	}
+
+	public static void printStacks() {
+		System.out.println(shapeList);
+		for (SelectedShapeOutline shape : selectedShapes) {
+			System.out.print(shape.getShape() + ", ");
+		}
+		System.out.println();
+	}
 }

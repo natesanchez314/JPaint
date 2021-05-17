@@ -32,7 +32,9 @@ public class CreateShapeCommand implements ICommand, IUndoable {
   @Override
   public void undo() {
     // clear canvas
+    CommandHistory.printStacks();
     CommandHistory.getShapeList().remove(shape);
+    CommandHistory.getSelectedShapes().removeIf(selectedShapeOutline -> selectedShapeOutline.getShape() == shape);
     g.setColor(Color.WHITE);
     g.fillRect(0, 0, (int) g.getDeviceConfiguration().getBounds().getWidth(), (int) g.getDeviceConfiguration().getBounds().getHeight());
     // redraw all the shapes

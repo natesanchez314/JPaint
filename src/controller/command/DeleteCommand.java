@@ -30,15 +30,18 @@ public class DeleteCommand implements ICommand, IUndoable {
     if (!deletedShapes.isEmpty()) {
       for (SelectedShapeOutline shape : deletedShapes) {
         CommandHistory.addShape(shape.getShape());
+        CommandHistory.selectShape(new SelectedShapeOutline(shape));
       }
     }
     CommandHistory.redrawAll();
   }
 
   private void deleteShapes() {
+    CommandHistory.printStacks();
     if (!deletedShapes.isEmpty()) {
       for (SelectedShapeOutline selectedShape : deletedShapes) {
         CommandHistory.removeShape(selectedShape.getShape());
+        CommandHistory.getSelectedShapes().remove(selectedShape);
       }
       Graphics2D g = deletedShapes.peek().getGraphics();
       g.setColor(Color.WHITE);
