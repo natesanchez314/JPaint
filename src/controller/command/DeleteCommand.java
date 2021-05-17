@@ -30,7 +30,7 @@ public class DeleteCommand implements ICommand, IUndoable {
     if (!deletedShapes.isEmpty()) {
       for (SelectedShapeOutline shape : deletedShapes) {
         CommandHistory.addShape(shape.getShape());
-        CommandHistory.selectShape(new SelectedShapeOutline(shape));
+        CommandHistory.selectShape(shape);
       }
     }
     CommandHistory.redrawAll();
