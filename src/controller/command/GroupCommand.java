@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 public class GroupCommand implements ICommand, IUndoable {
 
-  ShapeComposite shapeComposite;
-  ArrayList<IShape> shapes;
+  private final ShapeComposite shapeComposite;
+  private final ArrayList<IShape> shapes;
 
   public GroupCommand() {
     shapeComposite = new ShapeComposite();
@@ -18,25 +18,34 @@ public class GroupCommand implements ICommand, IUndoable {
 
   @Override
   public void run() {
-    for (SelectedShapeOutline selectedShape : CommandHistory.getSelectedShapes()) {
-      CommandHistory.removeShape(selectedShape);
-      shapeComposite.addShape(selectedShape.getShape());
-      shapes.add(selectedShape);
+    if (!CommandHistory.getSelectedShapes().isEmpty()) {
+      for (SelectedShapeOutline selectedShape : CommandHistory.getSelectedShapes()) {
+        shapes.add(selectedShape);
+        shapeComposite.addShape(selectedShape.getShape());
+        CommandHistory.removeShape(selectedShape.getShape());
+      }
+      CommandHistory.deselectShapes();
+      CommandHistory.addShape(shapeComposite);
+      CommandHistory.selectShape(new SelectedShapeOutline(shapeComposite));
+      CommandHistory.add(this);
+      CommandHistory.redrawAll();
+      //CommandHistory.printStacks();
     }
-    CommandHistory.deselectShapes();
-    CommandHistory.selectShape(new SelectedShapeOutline(shapeComposite));
-    CommandHistory.add(this);
-    CommandHistory.redrawAll();
   }
 
   @Override
   public void redo() {
-    for (IShape selectedShape : shapes) {
-      CommandHistory.removeShape(selectedShape);
-      CommandHistory.deselectShapes();
-      shapeComposite.addShape(selectedShape);
+    for (SelectedShapeOutline selectedShape : CommandHistory.getSelectedShapes()) {
+      shapes.add(selectedShape);
+      shapeComposite.addShape(selectedShape.getShape());
+      CommandHistory.removeShape(selectedShape.getShape());
     }
+    CommandHistory.deselectShapes();
     CommandHistory.addShape(shapeComposite);
+    CommandHistory.selectShape(new SelectedShapeOutline(shapeComposite));
+    CommandHistory.add(this);
+    CommandHistory.redrawAll();
+    //CommandHistory.printStacks();
   }
 
   @Override

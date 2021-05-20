@@ -7,9 +7,10 @@ import java.awt.*;
 import java.util.Stack;
 
 public final class CommandHistory {
-	private static final Stack<IUndoable> undoStack = new Stack<IUndoable>();
-	private static final Stack<IUndoable> redoStack = new Stack<IUndoable>();
-	private static final Stack<IShape> shapeList = new Stack<IShape>();
+
+	private static final Stack<IUndoable> undoStack = new Stack<>();
+	private static final Stack<IUndoable> redoStack = new Stack<>();
+	private static final Stack<IShape> shapeList = new Stack<>();
 	private static final Stack<SelectedShapeOutline> selectedShapes = new Stack<>();
 	private static final Stack<IShape> clipBoard = new Stack<>();
 
@@ -17,6 +18,7 @@ public final class CommandHistory {
 		undoStack.push(cmd);
 		redoStack.clear();
 	}
+
 	public static boolean undo() {
 		boolean result = !undoStack.empty();
 		if (result) {
@@ -26,6 +28,7 @@ public final class CommandHistory {
 		}
 		return result;
 	}
+
 	public static boolean redo() {
 		boolean result = !redoStack.empty();
 		if (result) {
@@ -83,6 +86,7 @@ public final class CommandHistory {
 		for (SelectedShapeOutline shape : selectedShapes) {
 			System.out.print(shape.getShape() + ", ");
 		}
+		//System.out.println();
 		System.out.println();
 	}
 }
