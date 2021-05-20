@@ -24,6 +24,5 @@ public class SelectCommand implements ICommand {
       }
     }
     CommandHistory.redrawAll();
-    CommandHistory.printStacks();
   }
 }

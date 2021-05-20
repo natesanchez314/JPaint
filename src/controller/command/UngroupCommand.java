@@ -4,7 +4,6 @@ import controller.shape.IShape;
 import controller.shape.SelectedShapeOutline;
 import controller.shape.ShapeComposite;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class UngroupCommand implements ICommand, IUndoable {
