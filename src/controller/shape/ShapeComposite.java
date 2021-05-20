@@ -5,6 +5,7 @@ import controller.command.CommandHistory;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ShapeComposite implements IShape {
 
@@ -19,16 +20,26 @@ public class ShapeComposite implements IShape {
   }
 
   public void addShape(IShape shape) {
+    ArrayList<Integer> xPoints = new ArrayList<>();
+    ArrayList<Integer> yPoints = new ArrayList<>();
     children.add(shape);
     if (startPoint == null) {
       startPoint = shape.getStartPoint().copy();
       endPoint = shape.getEndPoint().copy();
-    } else {
-      if (shape.getStartPoint().getX() < startPoint.getX()) startPoint.setX(shape.getStartPoint().getX());
-      if (shape.getStartPoint().getY() < startPoint.getY()) startPoint.setY(shape.getStartPoint().getY());
-      if (shape.getEndPoint().getX() > endPoint.getX()) endPoint.setX(shape.getEndPoint().getX());
-      if (shape.getEndPoint().getY() > endPoint.getY()) endPoint.setY(shape.getEndPoint().getY());
     }
+    xPoints.add(startPoint.getX());
+    xPoints.add(endPoint.getX());
+    xPoints.add(shape.getStartPoint().getX());
+    xPoints.add(shape.getEndPoint().getX());
+    startPoint.setX(Collections.min(xPoints));
+    endPoint.setX(Collections.max(xPoints));
+
+    yPoints.add(startPoint.getY());
+    yPoints.add(endPoint.getY());
+    yPoints.add(shape.getStartPoint().getY());
+    yPoints.add(shape.getEndPoint().getY());
+    startPoint.setY(Collections.min(yPoints));
+    endPoint.setY(Collections.max(yPoints));
   }
 
   public void removeShape(IShape shape) {
