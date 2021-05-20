@@ -35,17 +35,12 @@ public class SelectedShapeOutline implements IShape {
   @Override
   public void draw() {
     Graphics2D g = shape.getGraphics();
-    if (shape instanceof controller.shape.Rectangle) {
-      int width = endPoint.getX() - startPoint.getX();
-      int height = endPoint.getY() - startPoint.getY();
+    if (shape instanceof controller.shape.Triangle) {
       g.setColor(Color.DARK_GRAY);
-      if (width < 0) {
-        if (height < 0) g.drawRect(endPoint.getX(), endPoint.getY(), -width, -height);
-        else g.drawRect(endPoint.getX(), startPoint.getY(), -width, height);
-      } else {
-        if (height < 0) g.drawRect(startPoint.getX(), endPoint.getY(), width, -height);
-        else g.drawRect(startPoint.getX(), startPoint.getY(), width, height);
-      }
+      int width = endPoint.getX() - startPoint.getX();
+      int[] xPoints = {startPoint.getX(), startPoint.getX() + width / 2, endPoint.getX()};
+      int[] yPoints = {startPoint.getY(), endPoint.getY(), startPoint.getY() };
+      g.drawPolygon(xPoints, yPoints, 3);
     } else if (shape instanceof controller.shape.Ellipse) {
       int width = endPoint.getX() - startPoint.getX();
       int height = endPoint.getY() - startPoint.getY();
@@ -64,9 +59,15 @@ public class SelectedShapeOutline implements IShape {
       }
     } else {
       int width = endPoint.getX() - startPoint.getX();
-      int[] xPoints = {startPoint.getX(), startPoint.getX() + width / 2, endPoint.getX()};
-      int[] yPoints = {startPoint.getY(), endPoint.getY(), startPoint.getY() };
-      g.drawPolygon(xPoints, yPoints, 3);
+      int height = endPoint.getY() - startPoint.getY();
+      g.setColor(Color.DARK_GRAY);
+      if (width < 0) {
+        if (height < 0) g.drawRect(endPoint.getX(), endPoint.getY(), -width, -height);
+        else g.drawRect(endPoint.getX(), startPoint.getY(), -width, height);
+      } else {
+        if (height < 0) g.drawRect(startPoint.getX(), endPoint.getY(), width, -height);
+        else g.drawRect(startPoint.getX(), startPoint.getY(), width, height);
+      }
     }
   }
 

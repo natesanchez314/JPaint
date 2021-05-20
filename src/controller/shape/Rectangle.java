@@ -70,10 +70,10 @@ public class Rectangle implements IShape {
   }
 
   @Override
-  public void move(int xShit, int yShift) {
-    startPoint.shiftX(xShit);
+  public void move(int xShift, int yShift) {
+    startPoint.shiftX(xShift);
     startPoint.shiftY(yShift);
-    endPoint.shiftX(xShit);
+    endPoint.shiftX(xShift);
     endPoint.shiftY(yShift);
   }
 
