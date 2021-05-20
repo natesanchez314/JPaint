@@ -1,6 +1,7 @@
 package controller.shape;
 
 import controller.Point;
+import controller.command.CommandHistory;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -24,14 +25,20 @@ public class ShapeComposite implements IShape {
       endPoint = shape.getEndPoint().copy();
     } else {
       if (shape.getStartPoint().getX() < startPoint.getX()) startPoint.setX(shape.getStartPoint().getX());
-      if (shape.getStartPoint().getY() < startPoint.getY()) startPoint.setX(shape.getStartPoint().getY());
+      if (shape.getStartPoint().getY() < startPoint.getY()) startPoint.setY(shape.getStartPoint().getY());
       if (shape.getEndPoint().getX() > endPoint.getX()) endPoint.setX(shape.getEndPoint().getX());
-      if (shape.getEndPoint().getY() > endPoint.getY()) endPoint.setX(shape.getEndPoint().getY());
+      if (shape.getEndPoint().getY() > endPoint.getY()) endPoint.setY(shape.getEndPoint().getY());
     }
   }
 
   public void removeShape(IShape shape) {
     children.remove(shape);
+  }
+
+  public void ungroup() {
+    for (IShape groupedShape : children) {
+      CommandHistory.addShape(groupedShape);
+    }
   }
 
   public ArrayList<IShape> getChildren() {
@@ -88,6 +95,7 @@ public class ShapeComposite implements IShape {
 
   @Override
   public Graphics2D getGraphics() {
+    System.out.println(children);
     return children.get(0).getGraphics();
   }
 
